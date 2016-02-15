@@ -1,0 +1,14 @@
+<settings>
+    <setting id="MOON_SERVER_IP" type="text" label="Server IP" default="0.0.0.0"/>
+	<setting id="MOON_RESOLUTION" type="select" values="720p|1080p" label="Resolution" default="720p" />
+	<setting id="MOON_FRAMERATE" type="select" values="30|60" label="FPS" default="30" />
+    <setting id="MOON_BITRATE" type="text" label="Bitrate" default="10000" />
+	<setting id="MOON_PACKETSIZE" type="text" label="Packet Size (lower than MTU)" default="1400" />
+	<setting type="sep" />
+	<setting id="MOON_REMOTE" type="bool" label="Remote Optimizations" default="false"/>
+	<setting id="MOON_NOSOPS" type="bool" label="Don't allow GFE to modify game settings" default="false"/>
+	<setting id="MOON_LOCALAUDIO" type="bool" label="Play audio locally" default="false"/>
+	<setting id="MOON_SURROUND" type="bool" label="Stream 5.1 surround sound (requires GFE 2.7)" default="false"/>
+	<setting id="MOON_FORCEHW" type="bool" label="Force hardware acceleration" default="true"/>
+	<setting id="MOON_MAPPING" type="text" label="Control Mapping" default="dualshock4" />
+</settings>
