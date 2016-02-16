@@ -8,7 +8,7 @@ Only for Raspberry Pi 2 and Openelec.
 
 ##Features
 - Pair
-- List availables games
+- List availables game
 - Stream
 
 ##Bugs
