@@ -1,1 +1,5 @@
-1.0.0 Initial Release
+v1.0.1
+Add Pair and List Options
+
+v1.0.0
+Initial Release
