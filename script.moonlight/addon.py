@@ -15,6 +15,7 @@ base_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
 args = urlparse.parse_qs(sys.argv[2][1:])
 addon = xbmcaddon.Addon()
+addon_base_path = xbmc.translatePath(addon.getAddonInfo('profile')).decode('utf-8')
 xbmcplugin.setContent(addon_handle, "files")
 
 def build_url(query):
@@ -27,7 +28,7 @@ def index():
     if address == "0.0.0.0":
         address = gs.discover_server()
     
-    if not gs.connect_server(address):
+    if not gs.connect_server(address, os.path.join(addon_base_path, "keys")):
         dialog = xbmcgui.Dialog()
         dialog.ok("Error", "Failed connect to server (%s)" % (address))
         return
@@ -47,16 +48,16 @@ def index():
             return
     
     for appId, name in gs.applist():
-        base_path = xbmc.translatePath(addon.getAddonInfo('profile')).decode('utf-8') + "/images"
+        base_path = os.path.join(addon_base_path, "images")
         
         if not os.path.exists(base_path):
             os.makedirs(base_path)
         
-        poster_path = base_path + "/" + str(appId) + ".png"
+        poster_path = os.path.join(base_path, str(appId) + ".png")
         
         if not os.path.isfile(poster_path):
             gs.poster(appId, base_path)
-			xbmc.sleep(100)
+            xbmc.sleep(100)
         
         xbmcplugin.addDirectoryItem(handle=addon_handle, 
                                     url=build_url({"mode": "stream", "app": name}),

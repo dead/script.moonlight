@@ -67,6 +67,8 @@ do
 		if [ "$MOONLIGHT_APP" != "" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -app \"${MOONLIGHT_APP}\""
 		fi
+		
+		MOONLIGHT_ARG="$MOONLIGHT_ARG -keydir \"${ADDON_HOME}/keys\""
 
 		if [ "$MOON_SERVER_IP" != "0.0.0.0" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG $MOON_SERVER_IP"
