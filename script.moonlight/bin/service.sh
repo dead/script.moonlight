@@ -4,8 +4,6 @@
 
 oe_setup_addon script.moonlight
 
-export LD_LIBRARY_PATH=$ADDON_DIR/libs:$LD_LIBRARY_PATH
-
 chmod a+x $ADDON_DIR/bin/*
 
 while [ 1 ]

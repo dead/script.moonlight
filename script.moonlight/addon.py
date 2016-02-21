@@ -22,7 +22,7 @@ def build_url(query):
     return base_url + "?" + urllib.urlencode(query)
 
 def index():
-    gs = LibGameStream(addon.getAddonInfo("path") + "/libs")
+    gs = LibGameStream(addon.getAddonInfo("path") + "/lib")
     
     address = addon.getSetting("MOON_SERVER_IP")
     if address == "0.0.0.0":

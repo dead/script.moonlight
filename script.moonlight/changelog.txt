@@ -1,3 +1,9 @@
+v1.0.4
+Update to newest moonlight-embedded (2.1.3) and rename libs to lib
+
+v1.0.2-3
+Using ctypes instead popen, Fix pairing issue, add thumbnails to game list.
+
 v1.0.1
 Add Pair and List Options
 
