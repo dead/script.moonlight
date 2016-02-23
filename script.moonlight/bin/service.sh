@@ -16,7 +16,7 @@ do
 		
 		rm $ADDON_DIR/start_moonlight.tmp
 		
-		MOONLIGHT_ARG=""
+		MOONLIGHT_ARG="stream"
 
 		if [ "$MOON_PACKETSIZE" != "0" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -packetsize $MOON_PACKETSIZE"
@@ -79,7 +79,7 @@ do
 		
 		modprobe snd_bcm2835
 		echo $MOONLIGHT_ARG >> $ADDON_LOG_FILE
-		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} stream >> ${ADDON_LOG_FILE} 2>&1"
+		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} >> ${ADDON_LOG_FILE} 2>&1"
 		rmmod snd_bcm2835
 		systemctl start kodi
 	fi
