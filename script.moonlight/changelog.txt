@@ -1,3 +1,6 @@
+v1.0.6
+Update to moonlight-embedded 2.1.4
+
 v1.0.5
 Fix service not working when setting a ip address.
 
