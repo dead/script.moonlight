@@ -17,3 +17,4 @@ Only for Raspberry Pi 2 and Openelec.
 
 ##Bugs
 - Feel free to open a issue.
+- Please provide the following info: OpenELEC version and logs from `Userdata\addon_data\script.moonlight\service.log`

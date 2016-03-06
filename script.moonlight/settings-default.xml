@@ -10,4 +10,7 @@
     <setting id="MOON_RESOLUTION" value="720p" />
     <setting id="MOON_SERVER_IP" value="0.0.0.0" />
     <setting id="MOON_SURROUND" value="false" />
+    <setting id="MOON_WIDTH_RESOLUTION" value="1366" />
+    <setting id="MOON_HEIGHT_RESOLUTION" value="768" />
+    <setting id="MOON_AUDIO" value="sysdefault" />
 </settings>

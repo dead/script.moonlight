@@ -28,8 +28,10 @@ do
 
 		if [ "$MOON_RESOLUTION" = "720p" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -720"
-		else
+		elif [ "$MOON_RESOLUTION" = "1080p" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -1080"
+		else
+			MOONLIGHT_ARG="$MOONLIGHT_ARG -width $MOON_WIDTH_RESOLUTION -height $MOON_HEIGHT_RESOLUTION"
 		fi
 
 		if [ "$MOON_FRAMERATE" = "60" ]; then
@@ -56,6 +58,10 @@ do
 
 		if [ "$MOON_REMOTE" = "true" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -remote"
+		fi
+		
+		if [ "$MOON_AUDIO" != "sysdefault" ]; then
+			MOONLIGHT_ARG="$MOONLIGHT_ARG -audio $MOON_AUDIO"
 		fi
 
 		if [ "$MOON_MAPPING" != "" ]; then

@@ -1,3 +1,6 @@
+v1.0.7
+Added custom width/height and audio settings.
+
 v1.0.6
 Update to moonlight-embedded 2.1.4
 
