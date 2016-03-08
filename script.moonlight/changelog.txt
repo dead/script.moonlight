@@ -1,3 +1,6 @@
+V1.0.8
+Fix xbox and dualshock3 mapping.
+
 v1.0.7
 Added custom width/height and audio settings.
 
