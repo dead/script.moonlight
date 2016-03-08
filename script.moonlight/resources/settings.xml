@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-    <setting id="MOON_SERVER_IP" type="ipaddress" label="Server IP" default="0.0.0.0"/>
+	<setting id="MOON_SERVER_IP" type="ipaddress" label="Server IP" default="0.0.0.0"/>
 	<setting id="MOON_RESOLUTION" type="labelenum" label="Resolution" values="Custom|720p|1080p" default="720p" />
-    <setting id="MOON_WIDTH_RESOLUTION" type="text" label="Width" visible="eq(-1,1)" default="1366" />
-    <setting id="MOON_HEIGHT_RESOLUTION" type="text" label="Height" visible="eq(-2,1)" default="768" />
+	<setting id="MOON_WIDTH_RESOLUTION" type="text" label="Width" visible="eq(-1,1)" default="1366" />
+	<setting id="MOON_HEIGHT_RESOLUTION" type="text" label="Height" visible="eq(-2,1)" default="768" />
 	<setting id="MOON_FRAMERATE" type="select" values="30|60" label="FPS" default="30" />
-    <setting id="MOON_BITRATE" type="text" label="Bitrate" default="10000" />
+	<setting id="MOON_BITRATE" type="text" label="Bitrate" default="10000" />
 	<setting id="MOON_PACKETSIZE" type="text" label="Packet Size" default="1024" />
 	<setting type="sep" />
 	<setting id="MOON_REMOTE" type="bool" label="Remote Optimizations" default="false"/>
@@ -13,6 +13,6 @@
 	<setting id="MOON_LOCALAUDIO" type="bool" label="Play audio locally" default="false"/>
 	<setting id="MOON_SURROUND" type="bool" label="Stream 5.1 surround sound (requires GFE 2.7)" default="false"/>
 	<setting id="MOON_FORCEHW" type="bool" label="Force hardware acceleration" default="true"/>
-	<setting id="MOON_MAPPING" type="select" label="Control Mapping" values="default|dualschock3|dualshock4|rumblepad2|xbox360" default="dualshock4" />
-    <setting id="MOON_AUDIO" type="text" label="Audio Device" default="sysdefault" />
+	<setting id="MOON_MAPPING" type="select" label="Control Mapping" values="default|dualshock3|dualshock4|rumblepad2|xbox360" default="dualshock4" />
+	<setting id="MOON_AUDIO" type="text" label="Audio Device" default="sysdefault" />
 </settings>
