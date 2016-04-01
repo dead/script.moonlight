@@ -85,7 +85,7 @@ do
 		
 		modprobe snd_bcm2835
 		echo $MOONLIGHT_ARG >> $ADDON_LOG_FILE
-		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} >> ${ADDON_LOG_FILE} 2>&1"
+		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} > ${ADDON_LOG_FILE} 2>&1"
 		rmmod snd_bcm2835
 		systemctl start kodi
 	fi

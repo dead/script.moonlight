@@ -1,4 +1,7 @@
-V1.0.8
+v1.0.9
+Update moonlight-embedded, added support to GFE 2.11.X
+
+v1.0.8
 Fix xbox and dualshock3 mapping.
 
 v1.0.7

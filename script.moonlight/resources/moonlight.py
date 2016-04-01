@@ -12,6 +12,8 @@ GS_NOT_SUPPORTED_4K = -6
 
 class SERVER_DATA(ctypes.Structure):
     _fields_ = [("address", ctypes.c_char_p),
+                ("gpuType", ctypes.c_char_p),
+                ("gfeVersion", ctypes.c_char_p),
                 ("paired", ctypes.c_bool),
                 ("supports4K", ctypes.c_bool),
                 ("currentGame", ctypes.c_int),
@@ -31,7 +33,6 @@ class _HTTP_DATA(ctypes.Structure):
 
 class LibGameStream:
     def __init__(self, libpath = ""):
-        self.commomlib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libmoonlight-common.so.0"))
         self.gslib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libgamestream.so.0"))
         self.connected = False
         self.address = ""

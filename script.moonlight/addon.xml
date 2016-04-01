@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.moonlight" name="Moonlight" version="1.0.8" provider-name="dead">
+<addon id="script.moonlight" name="Moonlight" version="1.0.9" provider-name="dead">
     <requires>
         <import addon="xbmc.python" version="2.14.0"/>
     </requires>
