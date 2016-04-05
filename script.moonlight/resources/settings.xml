@@ -2,8 +2,8 @@
 <settings>
 	<setting id="MOON_SERVER_IP" type="ipaddress" label="Server IP" default="0.0.0.0"/>
 	<setting id="MOON_RESOLUTION" type="labelenum" label="Resolution" values="Custom|720p|1080p" default="720p" />
-	<setting id="MOON_WIDTH_RESOLUTION" type="text" label="Width" visible="eq(-1,1)" default="1366" />
-	<setting id="MOON_HEIGHT_RESOLUTION" type="text" label="Height" visible="eq(-2,1)" default="768" />
+	<setting id="MOON_WIDTH_RESOLUTION" type="text" label="Width" visible="eq(-1,0)" default="1366" />
+	<setting id="MOON_HEIGHT_RESOLUTION" type="text" label="Height" visible="eq(-2,0)" default="768" />
 	<setting id="MOON_FRAMERATE" type="select" values="30|60" label="FPS" default="30" />
 	<setting id="MOON_BITRATE" type="text" label="Bitrate" default="10000" />
 	<setting id="MOON_PACKETSIZE" type="text" label="Packet Size" default="1024" />

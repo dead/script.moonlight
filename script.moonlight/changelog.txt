@@ -1,3 +1,8 @@
+v1.0.10
+Update moonlight-embedded to 2.2.0
+Added libcrypto and libssl so it now runs on OpenElec 5, 6, 7
+Fixed a small issue in settings.
+
 v1.0.9
 Update moonlight-embedded, added support to GFE 2.11.X
 

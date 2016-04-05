@@ -2,7 +2,7 @@
 Only for Raspberry Pi 2 and Openelec.
 
 ##Installation
-- Download the latest release
+- Download the latest "script.moonlight.zip" in the releases
 - Copy the file to the Openelec
 - Go to Settings > Addons > Install from zip file
 
