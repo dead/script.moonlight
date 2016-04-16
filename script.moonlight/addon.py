@@ -18,6 +18,8 @@ addon = xbmcaddon.Addon()
 addon_base_path = xbmc.translatePath(addon.getAddonInfo('profile')).decode('utf-8')
 xbmcplugin.setContent(addon_handle, "files")
 
+os.environ['LD_LIBRARY_PATH'] = "/usr/lib:/lib:" + addon.getAddonInfo("path") + "/lib"
+
 def build_url(query):
     return base_url + "?" + urllib.urlencode(query)
 

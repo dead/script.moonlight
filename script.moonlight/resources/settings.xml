@@ -13,6 +13,6 @@
 	<setting id="MOON_LOCALAUDIO" type="bool" label="Play audio locally" default="false"/>
 	<setting id="MOON_SURROUND" type="bool" label="Stream 5.1 surround sound (requires GFE 2.7)" default="false"/>
 	<setting id="MOON_FORCEHW" type="bool" label="Force hardware acceleration" default="true"/>
-	<setting id="MOON_MAPPING" type="select" label="Control Mapping" values="default|dualshock3|dualshock4|rumblepad2|xbox360" default="dualshock4" />
+	<setting id="MOON_MAPPING" type="select" label="Control Mapping" values="default|dualshock3|dualshock3alt|dualshock4|rumblepad2|xbox360" default="dualshock4" />
 	<setting id="MOON_AUDIO" type="text" label="Audio Device" default="sysdefault" />
 </settings>

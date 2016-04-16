@@ -1,3 +1,7 @@
+v1.0.11
+Fixed libmoonlight-common.so not being found.
+Added alternative dualshock3 mapping
+
 v1.0.10
 Update moonlight-embedded to 2.2.0
 Added libcrypto and libssl so it now runs on OpenElec 5, 6, 7
