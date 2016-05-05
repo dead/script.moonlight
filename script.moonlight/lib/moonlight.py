@@ -38,76 +38,75 @@ class LibGameStream:
         self.connected = False
         self.address = ""
         self.key_dir = ""
-    
+
     def discover_server(self):
         addr = ctypes.create_string_buffer('\000' * 40)
         self.gslib.gs_discover_server(addr)
         return addr.value
-    
+
     def connect_server(self, address, key_dir = ""):
         self.server = ctypes.pointer(SERVER_DATA(address, False, False, 0, 0))
         self.address = address
-        
+
         if key_dir == "":
             if "XDG_CONFIG_DIR" in os.environ:
                 key_dir = os.path.join(os.environ["XDG_CONFIG_DIR"], "moonlight")
             else:
                 key_dir = os.path.join(os.environ["HOME"], ".cache", "moonlight")
-        
-        self.key_dir = key_dir        
+
+        self.key_dir = key_dir
         ret = self.gslib.gs_init(self.server, ctypes.c_char_p(key_dir))
         if ret == GS_OK:
             self.connected = True
             return True
         return False
-    
+
     def isPaired(self):
         if not self.connected:
             return False
-        
+
         return self.server[0].paired
-    
+
     def applist(self):
         if not self.connected:
             return None
-        
+
         lst = []
         applst_ptr = ctypes.POINTER(APP_LIST)
         applst = applst_ptr()
-        
+
         ret = self.gslib.gs_applist(self.server, ctypes.byref(applst))
         if ret != GS_OK:
             return None
-        
+
         while applst:
             lst.append((applst[0].id, applst[0].name))
             applst = applst[0].next
-        
+
         return lst
-        
+
     def poster(self, appId, toFolder):
         unique_id = ""        
         with open(os.path.join(self.key_dir, "uniqueid.dat"), "r") as f:
             unique_id = f.read()
-        
+
         uid = uuid4()
         url = "https://%s:47984/appasset?uniqueid=%s&uuid=%s&appid=%d&AssetType=2&AssetIdx=0" % (self.address, unique_id, str(uid), appId)
-        
+
         self.gslib.http_create_data.restype = ctypes.POINTER(_HTTP_DATA)
         data = self.gslib.http_create_data();
         self.gslib.http_request(ctypes.c_char_p(url), data)
-        
+
         barray = bytearray(data[0].memory[0:data[0].size])
-        
+
         with open(os.path.join(toFolder, str(appId) + ".png"), "wb") as f:
             f.write(barray)
-        
+
         self.gslib.http_free_data(data);
-            
+
     def pair(self, pin):
         if not self.connected:
             return None
-        
+
         ret = self.gslib.gs_pair(self.server, ctypes.c_char_p(pin))
         return ret == GS_OK
-    
