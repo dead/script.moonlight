@@ -4,18 +4,13 @@
 
 oe_setup_addon script.moonlight
 
-chmod a+x $ADDON_DIR/bin/*
+while [ 1 ]; do
+	if [ -f $ADDON_DIR/start_moonlight.tmp ]; then
 
-while [ 1 ]
-do
-	if [ -f $ADDON_DIR/start_moonlight.tmp ]
-	then
-		oe_setup_addon script.moonlight
-		
 		MOONLIGHT_APP=`cat $ADDON_DIR/start_moonlight.tmp`
-		
+
 		rm $ADDON_DIR/start_moonlight.tmp
-		
+
 		MOONLIGHT_ARG="stream"
 
 		if [ "$MOON_PACKETSIZE" != "0" ]; then
@@ -59,36 +54,34 @@ do
 		if [ "$MOON_REMOTE" = "true" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -remote"
 		fi
-		
+
 		if [ "$MOON_AUDIO" != "sysdefault" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -audio $MOON_AUDIO"
 		fi
 
 		if [ "$MOON_MAPPING" != "" ]; then
-			MOONLIGHT_ARG="$MOONLIGHT_ARG -mapping \"${ADDON_DIR}/bin/mappings/${MOON_MAPPING}.conf\""
+			MOONLIGHT_ARG="$MOONLIGHT_ARG -mapping \"${ADDON_DIR}/share/moonlight/mappings/${MOON_MAPPING}.conf\""
 		fi
-		
+
 		if [ "$MOONLIGHT_APP" != "" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -app \"${MOONLIGHT_APP}\""
 		fi
-		
+
 		MOONLIGHT_ARG="$MOONLIGHT_ARG -keydir \"${ADDON_HOME}/keys\""
 
 		if [ "$MOON_SERVER_IP" != "0.0.0.0" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG $MOON_SERVER_IP"
 		fi
-		
-		if pgrep "kodi.bin" > /dev/null
-		then
+
+		if pgrep "kodi.bin" > /dev/null; then
 			systemctl stop kodi
 		fi
-		
-		modprobe snd_bcm2835
+
+		modprobe snd_bcm2835 || :
 		echo $MOONLIGHT_ARG >> $ADDON_LOG_FILE
 		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} > ${ADDON_LOG_FILE} 2>&1"
-		rmmod snd_bcm2835
+		rmmod snd_bcm2835 || :
 		systemctl start kodi
 	fi
-	
 	sleep 1
 done
