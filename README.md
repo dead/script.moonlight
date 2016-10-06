@@ -1,9 +1,9 @@
 #script.moonlight
-Only for Raspberry Pi 2 and Openelec.
+A moonlight-embedded kodi interface.
 
 ##Installation
 - Download the latest "script.moonlight.zip" in the releases
-- Copy the file to the Openelec
+- Copy the file to your device
 - Go to Settings > Addons > Install from zip file
 
 ##Features
@@ -16,5 +16,5 @@ Only for Raspberry Pi 2 and Openelec.
 ![Screenshot](http://dead.github.io/images/moonlight-openelec.png "Screenshot")
 
 ##Bugs
-- Feel free to open a issue.
-- Please provide the following info: OpenELEC version and logs from `Userdata\addon_data\script.moonlight\service.log`
+- Feel free to open a issue
+- Please provide the logs from `Userdata\addon_data\script.moonlight\service.log`

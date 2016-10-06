@@ -10,16 +10,20 @@ GS_WRONG_STATE = -4
 GS_IO_ERROR = -5
 GS_NOT_SUPPORTED_4K = -6
 
+class SERVER_INFORMATION(ctypes.Structure):
+    _fields_ = [("address", ctypes.c_char_p),
+                ("serverInfoAppVersion", ctypes.c_char_p),
+                ("serverInfoGfeVersion", ctypes.c_bool)]
+
 class SERVER_DATA(ctypes.Structure):
     _fields_ = [("address", ctypes.c_char_p),
                 ("gpuType", ctypes.c_char_p),
-                ("gfeVersion", ctypes.c_char_p),
                 ("paired", ctypes.c_bool),
                 ("supports4K", ctypes.c_bool),
                 ("currentGame", ctypes.c_int),
-                ("serverMajorVersion", ctypes.c_int)]
-
-
+                ("serverMajorVersion", ctypes.c_int),
+                ("serverInfo", SERVER_INFORMATION)]
+                
 class APP_LIST(ctypes.Structure):
     pass
 
@@ -55,7 +59,7 @@ class LibGameStream:
                 key_dir = os.path.join(os.environ["HOME"], ".cache", "moonlight")
 
         self.key_dir = key_dir
-        ret = self.gslib.gs_init(self.server, ctypes.c_char_p(key_dir))
+        ret = self.gslib.gs_init(self.server, ctypes.c_char_p(address), ctypes.c_char_p(key_dir))
         if ret == GS_OK:
             self.connected = True
             return True

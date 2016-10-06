@@ -1,3 +1,6 @@
+v1.1.0
+Rename github project to script.moonlight and update to work with moonlight-embedded 2.2.2
+
 v1.0.11
 Fixed libmoonlight-common.so not being found.
 Added alternative dualshock3 mapping
