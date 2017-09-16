@@ -1,3 +1,6 @@
+v1.1.1
+update to work with moonlight-embedded 2.4.3
+
 v1.1.0
 Rename github project to script.moonlight and update to work with moonlight-embedded 2.2.2
 
