@@ -4,6 +4,14 @@
 
 oe_setup_addon script.moonlight
 
+# copy gamecontrollerdb.txt to folder
+MOONLIGHT_CONF_DIR="/storage/.config/moonlight"
+
+if [ ! -f "$MOONLIGHT_CONF_DIR/gamecontrollerdb.txt" ]; then
+  mkdir -p $MOONLIGHT_CONF_DIR
+  cp $ADDON_DIR/etc/gamecontrollerdb.txt $MOONLIGHT_CONF_DIR
+fi
+
 while [ 1 ]; do
 	if [ -f $ADDON_DIR/start_moonlight.tmp ]; then
 
@@ -30,13 +38,9 @@ while [ 1 ]; do
 		fi
 
 		if [ "$MOON_FRAMERATE" = "60" ]; then
-			MOONLIGHT_ARG="$MOONLIGHT_ARG -60fps"
+			MOONLIGHT_ARG="$MOONLIGHT_ARG -fps 60"
 		else
-			MOONLIGHT_ARG="$MOONLIGHT_ARG -30fps"
-		fi
-
-		if [ "$MOON_FORCEHW" = "true" ]; then
-			MOONLIGHT_ARG="$MOONLIGHT_ARG -forcehw"
+			MOONLIGHT_ARG="$MOONLIGHT_ARG -fps 30"
 		fi
 
 		if [ "$MOON_SURROUND" = "true" ]; then
@@ -59,10 +63,6 @@ while [ 1 ]; do
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -audio $MOON_AUDIO"
 		fi
 
-		if [ "$MOON_MAPPING" != "" ]; then
-			MOONLIGHT_ARG="$MOONLIGHT_ARG -mapping \"${ADDON_DIR}/share/moonlight/mappings/${MOON_MAPPING}.conf\""
-		fi
-
 		if [ "$MOONLIGHT_APP" != "" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG -app \"${MOONLIGHT_APP}\""
 		fi
@@ -78,7 +78,7 @@ while [ 1 ]; do
 		fi
 
 		modprobe snd_bcm2835 || :
-		echo $MOONLIGHT_ARG >> $ADDON_LOG_FILE
+		echo "${MOONLIGHT_ARG}" >> ${ADDON_LOG_FILE}
 		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} > ${ADDON_LOG_FILE} 2>&1"
 		rmmod snd_bcm2835 || :
 		systemctl start kodi
