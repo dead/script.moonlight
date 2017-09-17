@@ -10,6 +10,14 @@ GS_WRONG_STATE = -4
 GS_IO_ERROR = -5
 GS_NOT_SUPPORTED_4K = -6
 
+class DISPLAY_MODE(ctypes.Structure):
+    pass
+
+DISPLAY_MODE._fields_ = [("height", ctypes.c_int),
+                         ("width", ctypes.c_int),
+                         ("refresh", ctypes.c_int),
+                         ("next", ctypes.POINTER(DISPLAY_MODE))]
+
 class SERVER_INFORMATION(ctypes.Structure):
     _fields_ = [("address", ctypes.c_char_p),
                 ("serverInfoAppVersion", ctypes.c_char_p),
@@ -20,8 +28,11 @@ class SERVER_DATA(ctypes.Structure):
                 ("gpuType", ctypes.c_char_p),
                 ("paired", ctypes.c_bool),
                 ("supports4K", ctypes.c_bool),
+                ("unsupported", ctypes.c_bool),
                 ("currentGame", ctypes.c_int),
                 ("serverMajorVersion", ctypes.c_int),
+                ("gsVersion", ctypes.c_char_p),
+                ("modes", DISPLAY_MODE),
                 ("serverInfo", SERVER_INFORMATION)]
                 
 class APP_LIST(ctypes.Structure):
@@ -37,8 +48,8 @@ class _HTTP_DATA(ctypes.Structure):
 
 class LibGameStream:
     def __init__(self, libpath = ""):
-        self.commonlib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libmoonlight-common.so.0"))
-        self.gslib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libgamestream.so.0"))
+        self.commonlib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libmoonlight-common.so.2"))
+        self.gslib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libgamestream.so.2"))
         self.connected = False
         self.address = ""
         self.key_dir = ""
