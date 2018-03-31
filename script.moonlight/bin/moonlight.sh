@@ -4,12 +4,8 @@
 
 oe_setup_addon script.moonlight
 
-# copy gamecontrollerdb.txt to folder
-MOONLIGHT_CONF_DIR="/storage/.config/moonlight"
-
-if [ ! -f "$MOONLIGHT_CONF_DIR/gamecontrollerdb.txt" ]; then
-  mkdir -p $MOONLIGHT_CONF_DIR
-  cp $ADDON_DIR/etc/gamecontrollerdb.txt $MOONLIGHT_CONF_DIR
+if [ ! -f "$ADDON_HOME/gamecontrollerdb.txt" ]; then
+  cp $ADDON_DIR/etc/gamecontrollerdb.txt $ADDON_HOME
 fi
 
 while [ 1 ]; do
@@ -70,6 +66,7 @@ while [ 1 ]; do
 		fi
 
 		MOONLIGHT_ARG="$MOONLIGHT_ARG -keydir \"${ADDON_HOME}/keys\""
+    MOONLIGHT_ARG="$MOONLIGHT_ARG -mapping \"${ADDON_HOME}/gamecontrollerdb.txt\""
 
 		if [ "$MOON_SERVER_IP" != "0.0.0.0" ]; then
 			MOONLIGHT_ARG="$MOONLIGHT_ARG $MOON_SERVER_IP"
@@ -78,11 +75,10 @@ while [ 1 ]; do
 		if pgrep "kodi.bin" > /dev/null; then
 			systemctl stop kodi
 		fi
-
-		modprobe snd_bcm2835 || :
+    
 		echo "${MOONLIGHT_ARG}" >> ${ADDON_LOG_FILE}
-		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} > ${ADDON_LOG_FILE} 2>&1"
-		rmmod snd_bcm2835 || :
+		/bin/sh -c "${ADDON_DIR}/bin/moonlight ${MOONLIGHT_ARG} >> ${ADDON_LOG_FILE} 2>&1"
+
 		systemctl start kodi
 	fi
 	sleep 1
