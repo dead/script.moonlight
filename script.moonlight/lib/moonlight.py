@@ -34,7 +34,7 @@ class SERVER_DATA(ctypes.Structure):
                 ("gsVersion", ctypes.c_char_p),
                 ("modes", DISPLAY_MODE),
                 ("serverInfo", SERVER_INFORMATION)]
-                
+
 class APP_LIST(ctypes.Structure):
     pass
 
@@ -46,10 +46,17 @@ class _HTTP_DATA(ctypes.Structure):
     _fields_ = [("memory", ctypes.POINTER(ctypes.c_ubyte)),
                 ("size", ctypes.c_size_t)]
 
+def findlib(name):
+    libdirs = os.environ['LD_LIBRARY_PATH'].split(':')
+    for dir in libdirs:
+        for file in os.listdir(dir):
+            if file.find(name) != -1:
+                return os.path.join(dir, file)
+
 class LibGameStream:
     def __init__(self, libpath = ""):
-        self.commonlib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libmoonlight-common.so.2"))
-        self.gslib = ctypes.cdll.LoadLibrary(os.path.join(libpath, "libgamestream.so.2"))
+        self.commonlib = ctypes.cdll.LoadLibrary(findlib("libmoonlight-common.so"))
+        self.gslib = ctypes.cdll.LoadLibrary(findlib("libgamestream.so"))
         self.connected = False
         self.address = ""
         self.key_dir = ""
@@ -101,7 +108,7 @@ class LibGameStream:
         return lst
 
     def poster(self, appId, toFolder):
-        unique_id = ""        
+        unique_id = ""
         with open(os.path.join(self.key_dir, "uniqueid.dat"), "r") as f:
             unique_id = f.read()
 
