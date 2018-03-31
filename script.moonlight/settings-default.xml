@@ -1,9 +1,7 @@
 <settings>
     <setting id="MOON_BITRATE" value="10000" />
-    <setting id="MOON_FORCEHW" value="true" />
     <setting id="MOON_FRAMERATE" value="30" />
     <setting id="MOON_LOCALAUDIO" value="false" />
-    <setting id="MOON_MAPPING" value="dualshock4" />
     <setting id="MOON_NOSOPS" value="false" />
     <setting id="MOON_PACKETSIZE" value="1024" />
     <setting id="MOON_REMOTE" value="false" />

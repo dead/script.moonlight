@@ -12,6 +12,5 @@
 	<setting id="MOON_NOSOPS" type="bool" label="Don't allow GFE to modify game settings" default="false"/>
 	<setting id="MOON_LOCALAUDIO" type="bool" label="Play audio locally" default="false"/>
 	<setting id="MOON_SURROUND" type="bool" label="Stream 5.1 surround sound (requires GFE 2.7)" default="false"/>
-	<setting id="MOON_FORCEHW" type="bool" label="Force hardware acceleration" default="true"/>
 	<setting id="MOON_AUDIO" type="text" label="Audio Device" default="sysdefault" />
 </settings>
